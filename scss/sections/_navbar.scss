@@ -1,0 +1,45 @@
+@use '../custom' as *;
+@use '../components/mixins' as *;
+
+.menu {
+    @include gradient;
+
+    li {
+        position: relative;
+        padding: 0 .7rem;
+        transition: all 300ms ease;
+
+        a {
+            color: $white !important;
+            text-transform: capitalize;
+            font-weight: 600;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgba($white, .5);
+            visibility: hidden;
+            transition: all 300ms ease-in-out;
+        }
+
+        &:hover:before {
+            visibility: visible;
+            width: 100%;
+        }
+
+        //TARGETING SMALLER DEVICES
+        @include breakpoint(medium) {
+            margin-bottom: .7em;
+            text-align: center;
+
+            &:hover:before {
+                display: none;
+            }
+        }
+    }
+}
